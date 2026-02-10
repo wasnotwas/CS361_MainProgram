@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Upcoming Games</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+       {% include 'header_nav_bar.html' %}
+       <h1>Upcoming Games</h1>
+        <ul>
+            <li>{{team_name}}</li>
+        </ul>
+       {% include 'footer_nav_bar.html' %}
+ 
+    </body>
+</html>

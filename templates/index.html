@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Home Page for Teams</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        {% include 'header_nav_bar.html' %}
+        <h1>Home Page for Teams</h1>
+        <ul>
+            <li>{{team_name}}</li>
+        </ul>
+        {% include 'footer_nav_bar.html' %}
+    </body>
+</html>

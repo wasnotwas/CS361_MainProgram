@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Add Team</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        {% include 'header_nav_bar.html' %}
+        <h1>Admin: Add a Team</h1>
+        <form action="/admin/create_new_team" method="post">
+            <label for="Team_Name">Enter a team name</label>
+             <input type="text" name="Team_Name" placeholder="Enter team name here" /><br>
+            <label for="countryID">Select a country</label>
+             <select name="countryID" id="countryID">
+                <option value="ENG">England</option>
+                <option value="ESP">Spain</option>
+                <option value="GER">Germany</option>
+                <option value="ITA">Italy</option>
+            </select><br>
+            <input type="submit" value="Save Team Name" />
+        </form>
+        {% include 'footer_nav_bar.html' %}
+ 
+    </body>
+</html>

@@ -1,0 +1,56 @@
+[
+  {
+    "id": "1",
+    "home_team_id": "5",
+    "away_team_id": "8",
+    "venue_id": "5",
+    "datetime": "2025-01-28T20:00:00+00:00",
+    "timezone": "Europe/Berlin",
+    "status": "completed"
+  },
+  {
+    "id": "2",
+    "home_team_id": "2",
+    "away_team_id": "5",
+    "venue_id": "2",
+    "datetime": "2026-02-25T20:45:00+00:00",
+    "timezone": "Europe/Rome",
+    "status": "scheduled"
+  },
+  {
+    "id": "3",
+    "home_team_id": "5",
+    "away_team_id": "2",
+    "venue_id": "5",
+    "datetime": "2026-02-17T11:00:00+00:00",
+    "timezone": "Europe/Berlin",
+    "status": "scheduled"
+  },
+  {
+    "id": "4",
+    "home_team_id": "9",
+    "away_team_id": "3",
+    "venue_id": "8",
+    "datetime": "2026-02-18T11:00:00+00:00",
+    "timezone": "Europe/Brussels",
+    "status": "scheduled"
+  },
+  {
+    "id": "5",
+    "home_team_id": "3",
+    "away_team_id": "9",
+    "venue_id": "3",
+    "datetime": "2026-02-24T17:45:00+00:00",
+    "timezone": "Europe/Madrid",
+    "status": "scheduled"
+  },
+  {
+    "id": "6",
+    "home_team_id": "9",
+    "away_team_id": "4",
+    "venue_id": "8",
+    "datetime": "2025-11-05T20:00:00+00:00",
+    "timezone": "Europe/Brussels",
+    "status": "completed"
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "game_id": "6",
+    "final_score": {
+      "home": 3,
+      "away": 3
+    },
+    "winning_team_id": null
+  }, 
+  {
+    "game_id": "1",
+    "final_score": {
+      "home": 0,
+      "away": 2
+    },
+    "winning_team_id": "8"
+  }
+]

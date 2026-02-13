@@ -1,15 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Home Page for Teams</title>
+        <title>UEFA Match Day Center</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     </head>
     <body>
         {% include 'header_nav_bar.html' %}
-        <h1>Home Page for Teams</h1>
-        <ul>
-            <li>{{team_name}}</li>
-        </ul>
-        {% include 'footer_nav_bar.html' %}
+        <h1>Welcome to the UEFA Champions League Match Day Information Portal</h1>
+        <p>This interactive "Match Day Center" provides soccer fans with information on the individual games for the 2025-2026 European Champions League games. The details included in the Match Day Center will include weather forecast, teams playing, location, date and time, etc.</p>
+        <h1>Upcoming Games</h1>
+        <table>
+            {% for game in games %}
+            <tr>
+                <td align="center">{{ game.datetime }}</td>
+            </tr>
+            <tr>
+                <td align="center">{{ game.home_team }} vs. {{ game.away_team }}</td>
+            </tr>
+            <tr>
+                <td align="Center">{{ game.venue }}. {{ game.city }}, {{ game.country }}</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            {% endfor %}
+        </table>
+       {% include 'footer_nav_bar.html' %}
+ 
     </body>
 </html>

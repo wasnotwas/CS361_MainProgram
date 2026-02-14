@@ -4,7 +4,7 @@
     "home_team_id": "5",
     "away_team_id": "8",
     "venue_id": "5",
-    "datetime": "2025-01-28T20:00:00+00:00",
+    "datetime": "2026-01-28T20:00:00+00:00",
     "timezone": "Europe/Berlin",
     "status": "completed"
   },
@@ -22,7 +22,7 @@
     "home_team_id": "5",
     "away_team_id": "2",
     "venue_id": "5",
-    "datetime": "2026-02-17T11:00:00+00:00",
+    "datetime": "2026-02-17T21:00:00",
     "timezone": "Europe/Berlin",
     "status": "scheduled"
   },
@@ -51,6 +51,15 @@
     "venue_id": "8",
     "datetime": "2025-11-05T20:00:00+00:00",
     "timezone": "Europe/Brussels",
+    "status": "completed"
+  },
+  {
+    "id": "7",
+    "home_team_id": "4",
+    "away_team_id": "10",
+    "venue_id": "10",
+    "datetime": "2025-10-01T12:00:00",
+    "timezone": "Europe/Barcelona",
     "status": "completed"
   }
 ]

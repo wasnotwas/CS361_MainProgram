@@ -49,22 +49,32 @@ def write_to_game_data(new_game_results):
     with open('data/game_results.json', 'w') as file:
         json.dump(new_game_results, file)
 
-# the home page includes a list of all upcoming games
-@app.route('/')
-def home_page():
-    # list to hold all upcoming games
-    upcoming = []
+# function to find a specific set of games.
+# there are several parameters (all scheduled games, all completed games, games for a specific teamID)
+def get_games(status=None, team_id=None):
+    # status is an optional parameter ('scheduled', 'completed', or None)
+    # team_id is an optional parameter to filter games where this team is home or away
+    
+    # list to hold filtered games
+    filtered_games = []
 
-    # loop through all games and only add games where the status is "scheduled"
+    # loop through all games and filter by status and/or team_id
     for game in games:
-        if game['status'] == 'scheduled':
-            upcoming.append(game)
+        # check status filter
+        if status is not None and game['status'] != status:
+            continue
+        
+        # check team_id filter (home or away)
+        if team_id is not None and game['home_team_id'] != team_id and game['away_team_id'] != team_id:
+            continue
+        
+        filtered_games.append(game)
 
     # list to hold the game info (teams who are playing, venue, game date)
-    upcoming_game_data = []
+    game_data = []
 
-    # loop through upcoming[] list and merge required data from teams and venues
-    for game in upcoming:
+    # loop through filtered list and merge required data from teams and venues
+    for game in filtered_games:
         # switch datetime string to datetime object
         utc_time = datetime.fromisoformat(game['datetime'])
 
@@ -79,15 +89,26 @@ def home_page():
             'country': venues_dict[game['venue_id']]['country']
         }
 
-        # add individual game back into list of upcoming games
-        upcoming_game_data.append(individual_game)
+        # add individual game back into list
+        game_data.append(individual_game)
+    
+    return game_data
+
+# the home page includes a list of all upcoming games
+@app.route('/')
+def home_page():
+    # run function to get all scheduled games
+    upcoming_game_data = get_games("scheduled")
 
     return render_template('index.html', games=upcoming_game_data)
 
 # the games page includes a list of all games (past and present) for this season
 @app.route('/games')
 def list_games():
-    return render_template('list_games.html')
+    # run function to get all scheduled games
+    all_game_data = get_games()
+
+    return render_template('list_games.html', games=all_game_data)
 
 # list all teams
 @app.route('/teams')

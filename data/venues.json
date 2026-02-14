@@ -54,5 +54,19 @@
     "city": "Bruges",
     "country": "Belguim",
     "timezone": "Europe/Brussels"
+  },
+  {
+    "id": "9",
+    "name": "Parc des Princes",
+    "city": "Paris",
+    "country": "France",
+    "timezone": "Europe/Paris"
+  },
+  {
+    "id": "10",
+    "name": "Estadi Olímpic Lluís Companys",
+    "city": "Barcelona",
+    "country": "Spain",
+    "timezone": "Europe/Madrid"
   }
 ]

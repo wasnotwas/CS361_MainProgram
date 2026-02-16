@@ -1,0 +1,106 @@
+{
+  "game_lineups": [
+    {
+      "game_id": 12,
+      "team_id": 1,
+      "formation": "4-3-3",
+      "lineup": [
+        {
+          "player_id": 1,
+          "field_position": 1
+        },
+        {
+          "player_id": 2,
+          "field_position": 4
+        },
+        {
+          "player_id": 3,
+          "field_position": 5
+        },
+        {
+          "player_id": 4,
+          "field_position": 7
+        },
+        {
+          "player_id": 5,
+          "field_position": 9
+        },
+        {
+          "player_id": 6,
+          "field_position": 10
+        },
+        {
+          "player_id": 7,
+          "field_position": 2
+        },
+        {
+          "player_id": 8,
+          "field_position": 11
+        },
+        {
+          "player_id": 9,
+          "field_position": 8
+        },
+        {
+          "player_id": 10,
+          "field_position": 6
+        },
+        {
+          "player_id": 11,
+          "field_position": 3
+        }
+      ]
+    },
+    {
+      "game_id": 12,
+      "team_id": 8,
+      "formation": "3-5-2",
+      "lineup": [
+        {
+          "player_id": 24,
+          "field_position": 1
+        },
+        {
+          "player_id": 25,
+          "field_position": 8
+        },
+        {
+          "player_id": 26,
+          "field_position": 10
+        },
+        {
+          "player_id": 27,
+          "field_position": 11
+        },
+        {
+          "player_id": 28,
+          "field_position": 9
+        },
+        {
+          "player_id": 29,
+          "field_position": 2
+        },
+        {
+          "player_id": 30,
+          "field_position": 4
+        },
+        {
+          "player_id": 31,
+          "field_position": 6
+        },
+        {
+          "player_id": 32,
+          "field_position": 3
+        },
+        {
+          "player_id": 33,
+          "field_position": 7
+        },
+        {
+          "player_id": 34,
+          "field_position": 5
+        }
+      ]
+    }
+  ]
+}

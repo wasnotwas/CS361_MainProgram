@@ -6,6 +6,7 @@
     "venue_id": "5",
     "datetime": "2026-01-28T20:00:00+00:00",
     "timezone": "Europe/Berlin",
+    "game_label": "League phase - Matchday 8",
     "status": "completed"
   },
   {
@@ -15,6 +16,7 @@
     "venue_id": "2",
     "datetime": "2026-02-25T20:45:00+00:00",
     "timezone": "Europe/Rome",
+    "game_label": "KO play-offs - 2nd leg",
     "status": "scheduled"
   },
   {
@@ -24,6 +26,7 @@
     "venue_id": "5",
     "datetime": "2026-02-17T21:00:00",
     "timezone": "Europe/Berlin",
+    "game_label": "KO play-offs - 1st leg",
     "status": "scheduled"
   },
   {
@@ -33,6 +36,7 @@
     "venue_id": "8",
     "datetime": "2026-02-18T11:00:00+00:00",
     "timezone": "Europe/Brussels",
+    "game_label": "KO play-offs - 1st leg",
     "status": "scheduled"
   },
   {
@@ -42,6 +46,7 @@
     "venue_id": "3",
     "datetime": "2026-02-24T17:45:00+00:00",
     "timezone": "Europe/Madrid",
+    "game_label": "KO play-offs - 2nd leg",
     "status": "scheduled"
   },
   {
@@ -51,6 +56,7 @@
     "venue_id": "8",
     "datetime": "2025-11-05T20:00:00+00:00",
     "timezone": "Europe/Brussels",
+    "game_label": "League phase - Matchday 4",
     "status": "completed"
   },
   {
@@ -60,6 +66,7 @@
     "venue_id": "10",
     "datetime": "2025-10-01T12:00:00",
     "timezone": "Europe/Barcelona",
+    "game_label": "League phase - Matchday 2",
     "status": "completed"
   }
 ]

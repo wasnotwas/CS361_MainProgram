@@ -1,7 +1,6 @@
 from flask import Flask, request, render_template
 import json
-from datetime import datetime
-
+from datetime import datetime, timezone
 
 app = Flask(__name__)
 
@@ -77,13 +76,17 @@ def get_games(status=None, team_id=None):
     for game in filtered_games:
         # switch datetime string to datetime object
         utc_time = datetime.fromisoformat(game['datetime'])
+        # Add UTC timezone if missing or if there is an offset appended (this will help with sort later)
+        utc_time = utc_time.replace(tzinfo=timezone.utc)  
 
         # dictionary of individual game data
         individual_game = {
             'id': game['id'],
-            'datetime': utc_time.strftime('%A, %B %d, %Y at %I:%M %p %Z'),
+            'datetime': utc_time.strftime('%A, %B %d, %Y at %I:%M %p'),
+            'datetime_sort': utc_time, 
             'home_team': teams_dict[game['home_team_id']]['name'],
             'away_team': teams_dict[game['away_team_id']]['name'],
+            'game_label': game['game_label'],
             'venue': venues_dict[game['venue_id']]['name'],
             'city': venues_dict[game['venue_id']]['city'],
             'country': venues_dict[game['venue_id']]['country']
@@ -92,6 +95,11 @@ def get_games(status=None, team_id=None):
         # add individual game back into list
         game_data.append(individual_game)
     
+    # Sort list with earlist game first by sorting on the datatime object from each game:
+    def get_datetime(x):
+        return x['datetime_sort']
+    game_data.sort(key=get_datetime)
+
     return game_data
 
 # the home page includes a list of all upcoming games
@@ -124,6 +132,11 @@ def game_detail():
 @app.route('/admin/add_team')
 def admin_add_team_form():
     return render_template('admin/admin_add_team.html', ListofTeams=teams)
+
+# admin: add a new venue form
+@app.route('/admin/add_venue')
+def admin_add_venue_form():
+    return render_template('admin/admin_add_venue.html', ListofVenues=venues)
 
 # admin: add team to database
 @app.post('/admin/create_new_team')

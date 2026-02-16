@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Add Venue</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        {% include 'header_nav_bar.html' %}
+        <table cellpadding="20">
+            <tr>
+                <td valign="top">
+                     <h1>Admin: Add a Venue</h1>
+                    <form action="/admin/create_new_venue" method="post">
+                        <label for="Team_Name">Enter the venue name</label>
+                        <input type="text" name="Venue_Name" placeholder="Enter venue name here" /><br>
+                        <label for="City_Name">Enter the city name</label>
+                        <input type="text" name="City_Name" placeholder="Enter city name here" /><br>
+                        <label for="countryID">Select a country</label>
+                        <select name="countryID" id="countryID">
+                            <option value="Belgium">Belgium</option>
+                            <option value="England">England</option>
+                            <option value="France">France</option>
+                            <option value="Germany">Germany</option>
+                            <option value="Italy">Italy</option>
+                            <option value="Spain">Spain</option>
+                            <option value="Cyprus">Cyprus</option>
+                            <option value="Norway">Norway</option>
+                            <option value="Azerbaijan">Azerbaijan</option>
+                            <option value="Turkey">Turkey</option>
+                            <option value="Greece">Greece</option>
+                        </select><br>
+                        <label for="timezone">Select the time zone for the venue</label>
+                        <select name="timezone" id="timezone">
+                            <option value="Europe/Amsterdam">Europe/Amsterdam</option>
+                            <option value="Europe/Athens">Europe/Athens</option>
+                            <option value="Asia/Baku">Asia/Baku</option>
+                            <option value="Europe/Berlin">Europe/Berlin</option>
+                            <option value="Europe/Brussels">Europe/Brussels</option>
+                            <option value="Europe/Bucharest">Europe/Bucharest</option>
+                            <option value="Europe/Helsinki">Europe/Helsinki</option>
+                            <option value="Europe/Istanbul">Europe/Istanbul</option>
+                            <option value="Europe/Lisbon">Europe/Lisbon</option>
+                            <option value="Europe/London">Europe/London</option>
+                            <option value="Europe/Madrid">Europe/Madrid</option>
+                            <option value="Asia/Nicosia">Asia/Nicosia</option>
+                            <option value="Europe/Paris">Europe/Paris</option>
+                            <option value="Europe/Oslo">Europe/Oslo</option>
+                            <option value="Europe/Rome">Europe/Rome</option>
+                            <option value="Europe/Vienna">Europe/Vienna</option>
+                            <option value="Europe/Zurich">Europe/Zurich</option>
+                        </select><br>
+
+                        <input type="submit" value="Save New Venue" />
+                    </form>
+                </td>
+                <td>
+                    <h1>List of Current Venues</h1>
+                    <table>
+                    {% for venue in ListofVenues %}
+                        <tr>
+                            <td>{{venue.name}}, {{venue.city}} {{venue.country}}</td>
+                            <td><a href="">edit</a></td>
+                            <td><a href="">remove</a></td>
+                        </tr>
+                        {% endfor %}
+  
+                    </table>
+                </td>
+            </tr>
+        </table>
+        
+        {% include 'footer_nav_bar.html' %}
+    </body>
+</html>

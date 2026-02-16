@@ -12,26 +12,60 @@
                      <h1>Admin: Add a Game</h1>
                     <form action="/admin/create_new_game" method="post">
                         <label for="Team_Name">Home Team</label>
-                        <select name="teamID" id="teamID">
-                            <option value="BEL">Belgium</option>
-                            <option value="ENG">England</option>
-                            <option value="GER">Germany</option>
-                            <option value="ITA">Italy</option>
-                            <option value="ESP">Spain</option>
+                        <select name="home_teamID" id="home_teamID">
+                             {% for team in ListofTeams %}
+                            <option value="{{team.id}}">{{team.name}}</option>
+                            {% endfor %}
                         </select><br>
-                        <input type="submit" value="Save Team Name" />
+                        <label for="Team_Name">Away Team</label>
+                        <select name="away_teamID" id="away_teamID">
+                             {% for team in ListofTeams %}
+                            <option value="{{team.id}}">{{team.name}}</option>
+                            {% endfor %}
+                        </select><br>
+                        <label for="Team_Name">Venue</label>
+                        <select name="venueID" id="venueID">
+                             {% for venue in ListofVenues %}
+                            <option value="{{venue.id}}">{{venue.name}}, {{venue.city}}</option>
+                            {% endfor %}
+                        </select><br>
+                        <label for="Game_label">Type of Game</label>
+                        <select name="game_label" id="game_label">
+                            <option value="League phase - Matchday 1">League phase - Matchday 1</option>
+                            <option value="League phase - Matchday 2">League phase - Matchday 2</option>
+                            <option value="League phase - Matchday 3">League phase - Matchday 3</option>
+                            <option value="League phase - Matchday 4">League phase - Matchday 4</option>
+                            <option value="League phase - Matchday 5">League phase - Matchday 5</option>
+                            <option value="League phase - Matchday 6">League phase - Matchday 6</option>
+                            <option value="League phase - Matchday 7">League phase - Matchday 7</option>
+                            <option value="League phase - Matchday 8">League phase - Matchday 8</option>
+                            <option value="KO play-offs - 1st leg">KO play-offs - 1st leg</option>
+                            <option value="KO play-offs - 2nd leg">KO play-offs - 2nd leg</option>
+                            <option value="Round of 16 - 1st leg">Round of 16 - 1st leg</option>
+                            <option value="Round of 16 - 2nd leg">Round of 16 - 2nd leg</option>
+                            <option value="Quarter-finals - 1st leg">Quarter-finals - 1st leg</option>
+                            <option value="Quarter-finals - 2nd leg">Quarter-finals - 2nd leg</option>
+                        </select><br>
+                        <label for="Game_status">Status</label>
+                        <select name="game_status" id="game_status">
+                            <option value="scheduled">Scheduled</option>
+                            <option value="completed">Completed</option>
+                        </select><br>
+                        <label for="Game_date">Local Date/Time of Game</label>
+                        <input type="datetime-local" id="game_datetime" name="game_datetime"><br>
+                        <input type="submit" value="Save Game Info" />
                     </form>
                 </td>
                 <td>
-                    <h1>List of Current Teams</h1>
+                    <h1>List of Current games</h1>
                     <table>
-                        {% for team in ListofTeams %}
+                        {% for game in ListofGames %}
                         <tr>
-                            <td>{{team.name}}</td>
+                            <td>{{ game.game_label }} {{ game.home_team }} vs. {{ game.away_team }}</td>
                             <td><a href="">edit</a></td>
                             <td><a href="">remove</a></td>
                         </tr>
-                        {% endfor %}
+                         {% endfor %}
                     </table>
                 </td>
             </tr>

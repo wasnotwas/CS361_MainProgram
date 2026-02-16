@@ -138,6 +138,53 @@ def admin_add_team_form():
 def admin_add_venue_form():
     return render_template('admin/admin_add_venue.html', ListofVenues=venues)
 
+# admin: add a new venue form
+@app.route('/admin/add_game')
+def admin_add_game_form():
+    ListofGames_data=get_games()
+    return render_template('admin/admin_add_game.html', ListofGames=ListofGames_data, ListofTeams=teams, ListofVenues=venues)
+
+# admin: add game to database
+@app.post('/admin/create_new_game')
+def create_new_game():
+    # convert form data into varables
+    game_home_team = request.form.get('home_teamID')
+    game_away_team = request.form.get('away_teamID')
+    game_venue = request.form.get('venueID')
+    game_timezone = 'blank' #request.form.get('timezone')
+    game_label = request.form.get('game_label')
+    game_status = request.form.get('game_status')
+    game_datetime = request.form.get('game_datetime')
+    id = max(int(game['id']) for game in games)+1
+    
+    #put new game data into a new list
+    new_game = {'id': str(id), 'home_team_id': game_home_team, 'away_team_id': game_away_team, 'venue_id': game_venue, 'timezone': game_timezone, 'datetime': game_datetime, 'game_label': game_label, 'status': game_status}
+
+    # add to games list
+    games.append(new_game)
+    write_to_games(games)
+    return f'sucessfully added {game_home_team} {game_away_team} {game_datetime}'
+
+
+# admin: add venue to database
+@app.post('/admin/create_new_venue')
+def create_new_venue():
+    # convert form data into varables
+    venue_name = request.form.get('Venue_Name')
+    venue_city = request.form.get('Venue_City')
+    venue_country = request.form.get('countryID')
+    venue_timezone = request.form.get('timezone')
+    id = max(int(venue['id']) for venue in venues)+1
+    
+    #put new venue data into a new list
+    new_venue = {'id': str(id), 'name': venue_name, 'city': venue_city, 'country': venue_country, 'timezone': venue_timezone}
+    
+    # add to teams list
+    venues.append(new_venue)
+    write_to_venues_data(venues)
+    return f'sucessfully added {venue_name} {venue_country} {id}'
+
+
 # admin: add team to database
 @app.post('/admin/create_new_team')
 def create_new_team():

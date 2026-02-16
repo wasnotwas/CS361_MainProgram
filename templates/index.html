@@ -13,12 +13,18 @@
             {% for game in games %}
             <tr>
                 <td align="center">{{ game.datetime }}</td>
-                <td rowspan="6"><a href="">
-                    <span style="font-size: 40px;">&#9917; &#128196;</span>
+                <td rowspan="6" align="center"><a href="">
+                    <span style="font-size: 25px;">&#9917;</span>
                     <br>Match Details</a></td>
             </tr>
             <tr>
-                <td align="center">{{ game.home_team }} vs. {{ game.away_team }}</td>
+                <td align="center">
+                    <img src="{{ url_for('static', filename='images/team_icons/' + game.home_team_id|string + '.png') }}" alt="{{ game.home_team }} team logo" style="vertical-align: middle;" width="30" height="30">
+                    {{ game.home_team }} 
+                    vs. 
+                    <img src="{{ url_for('static', filename='images/team_icons/' + game.away_team_id|string + '.png') }}" alt="{{ game.away_team }} team logo" style="vertical-align: middle;" width="30" height="30">
+                    {{ game.away_team }}
+                </td>
             </tr>
             <tr>
                 <td align="Center">{{ game.venue }}. {{ game.city }}, {{ game.country }}</td>

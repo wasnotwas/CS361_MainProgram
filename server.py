@@ -176,7 +176,7 @@ def create_new_game():
     # add to games list
     games.append(new_game)
     write_to_games(games)
-    return f'sucessfully added {game_home_team} {game_away_team} {game_datetime}'
+    return f'sucessfully added {game_home_team} {game_away_team} {game_datetime} <a href="/">home</a>'
 
 
 # admin: add venue to database
@@ -195,7 +195,7 @@ def create_new_venue():
     # add to teams list
     venues.append(new_venue)
     write_to_venues_data(venues)
-    return f'sucessfully added {venue_name} {venue_country} {id}'
+    return f'sucessfully added {venue_name} {venue_country} {id} <a href="/">home</a>'
 
 
 # admin: add team to database
@@ -210,7 +210,7 @@ def create_new_team():
     # add to teams list
     teams.append(new_team)
     write_to_teams_data(teams)
-    return f'sucessfully added {team_name} {team_countryID} {id}'
+    return f'sucessfully added {team_name} {team_countryID} {id} <a href="/">home</a>'
 
 @app.get('/teams/<id>')
 def read_single_team(id):

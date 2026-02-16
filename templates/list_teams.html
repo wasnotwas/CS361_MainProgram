@@ -6,12 +6,46 @@
     </head>
     <body>
        {% include 'header_nav_bar.html' %}
+        <table>
+            <tr><td valign="top">
        <h1>Teams</h1>
         <ul>
             {% for team in ListofTeams %}
-            <li>{{team.name}}</li>
+            <li><a href="?id={{team.id}}">{{team.name}}</a></li>
             {% endfor %}
         </ul>
+            </td>
+        <td valign="top">
+            <h1>Games for Team</h1>
+                 <table align="center">
+            {% for game in ListofGames %}
+            <tr>
+                <td align="center">{{ game.datetime }}</td>
+                <td rowspan="6"><a href="">
+                    <span style="font-size: 40px;">&#9917; &#128196;</span>
+                    <br>Match Details</a></td>
+            </tr>
+            <tr>
+                <td align="center">{{ game.home_team }} vs. {{ game.away_team }}</td>
+            </tr>
+            <tr>
+                <td align="Center">{{ game.venue }}. {{ game.city }}, {{ game.country }}</td>
+            </tr>
+            <tr>
+                <td align="Center">{{ game.game_label }}</td>
+            </tr>
+            <tr>
+                <td align="Center">Weather placeholder: 70 &deg;F &#9926;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            {% endfor %}
+        </table>
+   
+        </td>
+        </tr>
+        </table>
        {% include 'footer_nav_bar.html' %}
  
     </body>

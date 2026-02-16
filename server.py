@@ -118,10 +118,21 @@ def list_games():
 
     return render_template('list_games.html', games=all_game_data)
 
+# Profile setup
+@app.route('/profile_setup')
+def profile_setup():
+    return render_template('profile_set_up.html', ListofTeams=teams)
+
 # list all teams
 @app.route('/teams')
 def list_teams():
-    return render_template('list_teams.html', ListofTeams=teams)
+    team_id = request.args.get('id')
+    
+    if team_id:
+        all_game_data = get_games(None, team_id)
+        return render_template('list_teams.html', ListofTeams=teams, ListofGames=all_game_data)
+    else:
+        return render_template('list_teams.html', ListofTeams=teams)
 
 # list info for a specific game
 @app.route('/game_detail')

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>UEFA Match Day Center</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        {% include 'header_nav_bar.html' %}
+        <h1>Profile Setup</h1>
+        <ul>
+            <li>Step 1: Setup your Profile</li>
+                <form>
+                     <label for="Name">First and Last Name</label> 
+                    <input type="text" name="Name" placeholder="Enter your name here" /><br>
+                       <label for="Team_Name">Favorite Team</label>
+            <li>Step 2: Select your favorite teams to folllow</li>
+                        <select name="teamID" id="teamID">
+                             {% for team in ListofTeams %}
+                            <option value="{{team.id}}">{{team.name}}</option>
+                            {% endfor %}
+                        </select><br>
+            <li>Step 3: Check in on the action for live results from games!</li>
+                 <input type="submit" value="Save Profile">
+                </form>
+                
+        </ul>
+       {% include 'footer_nav_bar.html' %}
+ 
+    </body>
+</html>

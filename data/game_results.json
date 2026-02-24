@@ -22,5 +22,13 @@
       "away": 2
     },
     "winning_team_id": 10
+  },
+  {
+    "game_id": "12",
+    "final_score": {
+      "home": 1,
+      "away": 3
+    },
+    "winning_team_id": 1
   }
 ]

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>UEFA Match Day Center</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        {% include 'header_nav_bar.html' %}
+
+        <h1>Game Information</h1>
+        <p>{{ match.game_label }}</p>
+        <p>{{ match.datetime }}</p>
+        <p>{{ match.venue }}, {{ match.venue_city }} {{ match.venue_country }}</p>
+
+        <h2>Score</h2>
+        {% if match.score %}
+            <p>
+                <strong>
+                    {{ match.home_team.name }} {{ match.score.home }}
+                    -
+                    {{ match.score.away }} {{ match.away_team.name }}
+                </strong>
+            </p>
+        {% else %}
+            <p>Score not available.</p>
+        {% endif %}
+
+        <hr>
+
+        <h2>Home Team</h2>
+        <p><strong>Team Name:</strong> {{ match.home_team.name }}</p>
+
+        {% if match.home_team.lineup %}
+            <p><strong>Formation:</strong> {{ match.home_team.lineup.formation }}</p>
+
+            <h3>Home Team Lineup</h3>
+            <ul>
+                {% for player in match.home_team.lineup.players %}
+                    <li>
+                        #{{ player.jersey_number }}
+                        {{ player.name }}
+                        ({{ player.position }})
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No lineup available.</p>
+        {% endif %}
+
+        <hr>
+
+        <h2>Away Team</h2>
+        <p><strong>Team Name:</strong> {{ match.away_team.name }}</p>
+
+        {% if match.away_team.lineup %}
+            <p><strong>Formation:</strong> {{ match.away_team.lineup.formation }}</p>
+
+            <h3>Away Team Lineup</h3>
+            <ul>
+                {% for player in match.away_team.lineup.players %}
+                    <li>
+                        #{{ player.jersey_number }}
+                        {{ player.name }}
+                        ({{ player.position }})
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No lineup available.</p>
+        {% endif %}
+
+
+        {% include 'footer_nav_bar.html' %}
+ 
+    </body>
+</html>

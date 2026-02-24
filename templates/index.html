@@ -13,7 +13,7 @@
             {% for game in games %}
             <tr>
                 <td align="center">{{ game.datetime }}</td>
-                <td rowspan="6" align="center"><a href="">
+                <td rowspan="6" align="center"><a href="/match_details?id={{game.id}}">
                     <span style="font-size: 25px;">&#9917;</span>
                     <br>Match Details</a></td>
             </tr>

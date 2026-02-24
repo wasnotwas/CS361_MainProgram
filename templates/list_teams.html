@@ -21,7 +21,7 @@
             {% for game in ListofGames %}
             <tr>
                 <td align="center">{{ game.datetime }}</td>
-                <td rowspan="6"><a href="">
+                <td rowspan="6"><a href="/match_details?id={{game.id}}">
                     <span style="font-size: 40px;">&#9917; &#128196;</span>
                     <br>Match Details</a></td>
             </tr>

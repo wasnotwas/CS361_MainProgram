@@ -13,6 +13,14 @@
         <p>{{ match.venue }}, {{ match.venue_city }} {{ match.venue_country }}</p>
 
         <h2>Current Weather Conditions</h2>
+        {% if weather %}
+            <p>Conditions: {{ weather.main }}</p>
+            <p>Temperature: {{ weather.temp }}°C</p>
+            <p>Humidity: {{ weather.humidity }}%</p>
+            <p>Wind Speed: {{ weather.wind_speed }} m/s</p>
+        {% else %}
+            <p>No weather data available.</p>
+        {% endif %}
 
         <h2>Score</h2>
         {% if match.score %}

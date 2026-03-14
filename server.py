@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 import json
+import requests
 from datetime import datetime, timezone
 from match_data import get_match_details
 
@@ -119,12 +120,39 @@ def match_details():
     if not game_id:
         return "No game ID provided"
 
+    #match details
     details = get_match_details(game_id)
     if not details:
         return "Game not found"
 
-    return render_template('match_details.html', match=details)
+    # weather details
+    weather = None
+    venue_latitude = details.get('venue_latitude')
+    venue_longitude = details.get('venue_longitude')
+    print("latitude", venue_latitude)
 
+    if venue_latitude and venue_longitude:
+        try:
+            weather_url = (
+                f"https://api.openweathermap.org/data/2.5/weather"
+                f"?lat={venue_latitude}&lon={venue_longitude}&units=metric"
+                f"&appid=434d0d0857e561ac623dd6b366e66fad"
+            )
+            weather_response = requests.get(weather_url, timeout=5)
+            if weather_response.status_code == 200:
+                weather_data = weather_response.json()
+                weather = {
+                    'main': weather_data['weather'][0]['main'],
+                    'temp': weather_data['main']['temp'],
+                    'humidity': weather_data['main']['humidity'],
+                    'wind_speed': weather_data['wind']['speed'],
+                    'code': weather_data['cod']
+                }
+        except Exception as e:
+            print(f"Weather API error: {e}")
+            weather = None
+
+    return render_template('match_details.html', match=details, weather=weather)
 
 # the games page includes a list of all games (past and present) for this season
 @app.route('/games')

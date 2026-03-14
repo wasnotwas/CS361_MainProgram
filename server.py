@@ -134,13 +134,13 @@ def match_details():
     venue_latitude = details.get('venue_latitude')
     venue_longitude = details.get('venue_longitude')
 
-    """
+    
     # Test Weather Data
     weather = {
                     'main': "Clouds", #str
-                    'temp': "12.51", #float
-                    'humidity': "90", #int
-                    'wind_speed': "3.81", #float
+                    'temp': 12.51, #float
+                    'humidity': 90, #int
+                    'wind_speed': 3.81, #float
                     'code': 200 #int
                 }
     """
@@ -167,7 +167,7 @@ def match_details():
             except Exception as e:
                 print(f"Weather API error: {e}")
                 weather = None
-    
+    """
     return render_template('match_details.html', match=details, weather=weather)
 
 # the games page includes a list of all games (past and present) for this season

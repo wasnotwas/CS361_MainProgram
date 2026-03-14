@@ -8,14 +8,26 @@
         {% include 'header_nav_bar.html' %}
 
         <h1>Game Information</h1>
-        <p>{{ match.game_label }}</p>
+        <table>
+            <tr>
+                <td align="center">
+                    <img src="{{ url_for('static', filename='images/team_icons/' + match.home_team.id|string + '.png') }}" alt="{{ match.home_team.name  }} team logo" style="vertical-align: middle;" width="70" height="70">
+                    {{ match.home_team.name }} 
+                    vs. 
+                    <img src="{{ url_for('static', filename='images/team_icons/' + match.away_team.id|string + '.png') }}" alt="{{ match.away_team.name }} team logo" style="vertical-align: middle;" width="70" height="70">
+                    {{ match.away_team.name }}
+                </td>
+            </tr>
+            </table>
+
         <p>{{ match.datetime }}</p>
+        <p>{{ match.game_label }}</p>
         <p>{{ match.venue }}, {{ match.venue_city }} {{ match.venue_country }}</p>
         <img src="{{ url_for('static', filename='images/venue_icons/' + match.venue_id|string + '.png') }}" alt="Picture of {{ match.venue }}" style="vertical-align: middle;">
         
         <h2>Current Weather Conditions</h2>
         {% if weather %}
-            <p>Conditions: {{ weather.main }}</p>
+            <p>Conditions: {{ weather.main }} - {{weather_define}}</p>
             <p>Temperature: {{ weather.temp }}°C or {{temp_F}}°F</p>
             <p>Humidity: {{ weather.humidity }}%</p>
             <p>Wind Speed: {{ weather.wind_speed }} Kilometers per hour or {{ wind_speed_mph}} miles per hour</p>

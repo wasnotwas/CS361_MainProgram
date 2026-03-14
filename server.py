@@ -206,14 +206,28 @@ def match_details():
                 heat_index_F = hi_response.json()['heat_index']
         except Exception as e:
             print(f"Heat index API error: {e}")
- 
+
+    # BIG POOL Microservice API Call: Find Weather term
+    weather_term = weather['main'].upper()
+    try:
+        temp_response = requests.get(
+            f"http://127.0.0.1:4040/definition/?term={weather_term}",
+            timeout=5
+        )
+        if temp_response.status_code == 200:
+            weather_term = temp_response.json()['definition']
+    except Exception as e:
+        print(f"Terms API error: {e}")
+
+
     return render_template(
         'match_details.html',
         match=details,
         weather=weather,
         wind_speed_mph=wind_speed_mph,
         temp_F=round(temp_F,2),
-        heat_index_F=heat_index_F
+        heat_index_F=heat_index_F,
+        weather_define=weather_term
     )
 
 # the games page includes a list of all games (past and present) for this season

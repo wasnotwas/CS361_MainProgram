@@ -135,6 +135,7 @@ def match_details():
     venue_longitude = details.get('venue_longitude')
  
     
+    """
     # Test Weather Data
     weather = {
                     'main': "Clouds", #str
@@ -167,13 +168,13 @@ def match_details():
             except Exception as e:
                 print(f"Weather API error: {e}")
                 weather = None
-    """
+    
     # BIG POOL MICROSERVER API Call: Convert wind speed to from Metric to imperial
     wind_speed_mph = None
-    wind_speed_kmh = weather['wind_speed'] * 0.001
+    wind_speed_kmh = weather['wind_speed']
     try:
         ws_response = requests.get(
-            f"http://127.0.0.1:6060/ktom/?speed={wind_speed_kmh}",
+            f"http://127.0.0.1:6060/mtok/?speed={wind_speed_kmh}",
             timeout=5
         )
         if ws_response.status_code == 200:
@@ -211,7 +212,7 @@ def match_details():
         match=details,
         weather=weather,
         wind_speed_mph=wind_speed_mph,
-        temp_F=temp_F,
+        temp_F=round(temp_F,2),
         heat_index_F=heat_index_F
     )
 

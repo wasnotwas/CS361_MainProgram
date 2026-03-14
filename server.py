@@ -134,19 +134,6 @@ def match_details():
     venue_latitude = details.get('venue_latitude')
     venue_longitude = details.get('venue_longitude')
  
-    
-    """
-    # Test Weather Data
-    weather = {
-                    'main': "Clouds", #str
-                    'temp': 12.51, #float
-                    'humidity': 90, #int
-                    'wind_speed': 3.81, #float
-                    'code': 200 #int
-                }
-    """
-    #real weather call
- 
     if venue_latitude and venue_longitude:
             try:
                 weather_url = (

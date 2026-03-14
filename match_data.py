@@ -83,6 +83,7 @@ def get_match_details(game_id):
         'status': game.get('status'),
         'datetime': formatted_datetime,
         'venue': venue.get('name'),
+        'venue_id': venue.get('id'),
         'venue_city': venue.get('city'),
         'venue_country': venue.get('country'),
         'venue_latitude': venue.get('latitude'),

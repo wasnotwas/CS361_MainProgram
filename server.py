@@ -123,17 +123,17 @@ def match_details():
     game_id = request.args.get('id')
     if not game_id:
         return "No game ID provided"
-
-    #match details
+ 
+    # Grab match details
     details = get_match_details(game_id)
     if not details:
         return "Game not found"
-
+ 
     # Get Current Weather details from OpenWeatherMap.org
     weather = None
     venue_latitude = details.get('venue_latitude')
     venue_longitude = details.get('venue_longitude')
-
+ 
     
     # Test Weather Data
     weather = {
@@ -145,7 +145,7 @@ def match_details():
                 }
     """
     #real weather call
-
+ 
     if venue_latitude and venue_longitude:
             try:
                 weather_url = (
@@ -168,7 +168,52 @@ def match_details():
                 print(f"Weather API error: {e}")
                 weather = None
     """
-    return render_template('match_details.html', match=details, weather=weather)
+    # BIG POOL MICROSERVER API Call: Convert wind speed to from Metric to imperial
+    wind_speed_mph = None
+    wind_speed_kmh = weather['wind_speed'] * 0.001
+    try:
+        ws_response = requests.get(
+            f"http://127.0.0.1:6060/ktom/?speed={wind_speed_kmh}",
+            timeout=5
+        )
+        if ws_response.status_code == 200:
+            wind_speed_mph = ws_response.json()['result']
+    except Exception as e:
+        print(f"Wind speed conversion API error: {e}")
+ 
+    # SMALL POOL Microservice API Call: Convert temperature to Fahrenheit
+    temp_F = None
+    try:
+        temp_response = requests.get(
+            f"http://127.0.0.1:8080/ctof/?temp={weather['temp']}",
+            timeout=5
+        )
+        if temp_response.status_code == 200:
+            temp_F = temp_response.json()['result']
+    except Exception as e:
+        print(f"Temp conversion API error: {e}")
+ 
+    # BIG POOL MICROSERVICE API CALL: Calculate heat index
+    heat_index_F = None
+    if temp_F is not None:
+        try:
+            hi_response = requests.get(
+                f"http://127.0.0.1:7070/heatindex?temperature_f={temp_F}&humidity={weather['humidity']}",
+                timeout=5
+            )
+            if hi_response.status_code == 200:
+                heat_index_F = hi_response.json()['heat_index']
+        except Exception as e:
+            print(f"Heat index API error: {e}")
+ 
+    return render_template(
+        'match_details.html',
+        match=details,
+        weather=weather,
+        wind_speed_mph=wind_speed_mph,
+        temp_F=temp_F,
+        heat_index_F=heat_index_F
+    )
 
 # the games page includes a list of all games (past and present) for this season
 @app.route('/games')
